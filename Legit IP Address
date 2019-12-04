@@ -1,0 +1,105 @@
+Inputed_IP = input("Please enter an IP address: ")
+
+#Function "number_of_dots" counts number of dots in IP address
+def three_dots(Inputed_IP):
+    counting_dots = Inputed_IP.count('.')
+    if counting_dots == 3:
+        return True
+    else:
+        return False
+
+#Function "start_with_number" verifies IP address starts with a number between 1 and 9.
+def start_with_number(Inputed_IP):
+    first_number = Inputed_IP[0]
+    if first_number in '123456789':
+        return True
+    else:
+        return False
+
+#Function "legit_digits" verifies all the components are numbers and dots.
+def legit_digits(Inputed_IP):
+    for item in Inputed_IP:
+        if item not in '1234567890.':
+            return False
+        else:
+            pass
+        
+#Function "extract_all_octets" extract all 4 octets from the IP address.
+def extract_all_octets(Inputed_IP):
+    Input_list = Inputed_IP.split(".")
+    return Input_list
+
+#Function "verify_first_octet" verifies if the value of the first octet is in range (0-255)
+def verify_first_octet(Inputed_IP):
+    first_octet = int(extract_all_octets(Inputed_IP)[0])
+    if 0 <= first_octet <= 255:
+        return True
+    else:
+        return False
+
+#Function "verify_second_octet" verifies if the value of the second octet is in range (0-255)
+def verify_second_octet(Inputed_IP):
+    second_octet = int(extract_all_octets(Inputed_IP)[1])
+    if 0 <= second_octet <= 255:
+        return True
+    else:
+        return False
+
+#Function "verify_third_octet" verifies if the value of the third octet is in range (0-255)
+def verify_third_octet(Inputed_IP):
+    third_octet = int(extract_all_octets(Inputed_IP)[2])
+    if 0 <= third_octet <= 255:
+        return True
+    else:
+        return False
+
+#Function "verify_forth_octet" verifies if the value of the forth octet is in range (0-255)
+def verify_forth_octet(Inputed_IP):
+    forth_octet = int(extract_all_octets(Inputed_IP)[3])
+    if 0 <= forth_octet <= 255:
+        return True
+    else:
+        return False
+
+#Fuction "verify_legit_IP" summorizes all the tests for the final verdict 
+def verify_legit_IP(Inputed_IP):
+    if three_dots(Inputed_IP) == True and \
+    start_with_number(Inputed_IP) == True and \
+    legit_digits(Inputed_IP) == None and \
+    verify_first_octet(Inputed_IP) == True and \
+    verify_second_octet(Inputed_IP) == True and \
+    verify_third_octet(Inputed_IP) == True and \
+    verify_forth_octet(Inputed_IP) == True:
+        return True
+    else:
+        return False
+        
+        
+    
+            
+dots = three_dots(Inputed_IP)
+first_digit = start_with_number(Inputed_IP)
+legit = legit_digits(Inputed_IP)
+first_octet = int(extract_all_octets(Inputed_IP)[0])
+second_octet = int(extract_all_octets(Inputed_IP)[1])
+third_octet = int(extract_all_octets(Inputed_IP)[2])
+forth_octet = int(extract_all_octets(Inputed_IP)[3])
+verify_first_number = verify_first_octet(Inputed_IP)
+verify_second_number = verify_second_octet(Inputed_IP)
+verify_third_number = verify_third_octet(Inputed_IP)
+verify_forth_number = verify_forth_octet(Inputed_IP)
+
+verify_IP_address = verify_legit_IP(Inputed_IP)
+
+print("Three dots: {0}".format(dots))
+print("First object is digit: {0}".format(first_digit))    
+print("All digits are ok: {0} ".format(legit))
+print("First octet of the IP address is: {0}".format(first_octet))
+print("Second octet of the IP address is: {0}".format(second_octet))
+print("Third octet of the IP address is: {0}".format(third_octet))
+print("Forth octet of the IP address is: {0}".format(forth_octet))
+print("First octet is legit: {0}".format(verify_first_number))
+print("Second octet is legit: {0}".format(verify_second_number))
+print("Third octet is legit: {0}".format(verify_third_number))
+print("Forth octet is legit: {0}".format(verify_forth_number))
+print("The IP address {0} is legit: {1}".format(Inputed_IP, verify_IP_address))
